@@ -26,7 +26,7 @@ aruco_dict = aruco.getPredefinedDictionary(ARUCO_DICT)
 
 # 2. 마커 이미지 생성 (흰색 배경에 검은색 패턴)
 # 1은 검은색, 0은 흰색이 되도록 numpy 배열을 만듭니다.
-marker_image = aruco.generateImage(aruco_dict, MARKER_ID, MARKER_SIZE_PIXELS)
+marker_image = aruco.generateMarker(aruco_dict, MARKER_ID, MARKER_SIZE_PIXELS)
 
 # 3. 이미지 저장
 file_name = os.path.join(OUTPUT_DIR, f"aruco_id_{MARKER_ID}_{MARKER_SIZE_PIXELS}px.png")
