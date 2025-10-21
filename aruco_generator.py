@@ -3,18 +3,18 @@ import cv2.aruco as aruco
 import numpy as np
 import os
 
-# --- 설정 변수 ---
-# 사용할 Aruco 딕셔너리 정의 (예: 4x4 크기에 50개의 고유 ID를 가진 딕셔너리)
+# --- 설정 변수 (변경할 부분) ---
+# 사용할 Aruco 딕셔너리 정의 (예: 5x5 크기에 1000개의 고유 ID를 가진 딕셔너리로 변경)
 # Aruco 공식 문서를 참고하여 프로젝트에 맞는 딕셔너리를 선택할 수 있습니다.
-ARUCO_DICT = aruco.DICT_4X4_50
+ARUCO_DICT = aruco.DICT_5X5_1000 # 👈 딕셔너리 변경 예시
 
-# 생성할 마커의 고유 ID (0에서 49 사이)
-MARKER_ID = 25 
+# 생성할 마커의 고유 ID (선택한 딕셔너리 범위 내에서 선택해야 합니다. 예: 5x5_1000은 0~999)
+MARKER_ID = 42 # 👈 마커 ID 변경 예시
 
-# 생성될 이미지의 픽셀 크기 (마커가 커질수록 인식률이 좋고 3D 좌표 오차가 줄어듭니다)
-MARKER_SIZE_PIXELS = 700 
+# 생성될 이미지의 픽셀 크기 (더 큰 크기로 변경)
+MARKER_SIZE_PIXELS = 1000 # 👈 마커 크기 변경 예시
 
-# 저장 경로
+# 저장 경로 (필요하다면 변경 가능)
 OUTPUT_DIR = "markers"
 
 # --- 코드 실행 ---
@@ -25,7 +25,6 @@ if not os.path.exists(OUTPUT_DIR):
 aruco_dict = aruco.getPredefinedDictionary(ARUCO_DICT)
 
 # 2. 마커 이미지 생성 (흰색 배경에 검은색 패턴)
-# 1은 검은색, 0은 흰색이 되도록 numpy 배열을 만듭니다.
 marker_image = aruco.generateImageMarker(aruco_dict, MARKER_ID, MARKER_SIZE_PIXELS)
 
 # 3. 이미지 저장
